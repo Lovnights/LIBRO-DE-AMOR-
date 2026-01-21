@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>El libro de lo que nunca te dije 💗</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #f9c5d1, #fddde6);
+      font-family: 'Quicksand', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .book-container {
+      perspective: 1600px;
+      position: relative;
+    }
+
+    .book {
+      width: 340px;
+      height: 480px;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.2s ease;
+    }
+
+    .page {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, #fff0f6, #fde3ec);
+      border-radius: 18px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+      transform-origin: left center;
+      transition: transform 1.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 22px;
+      box-sizing: border-box;
+      backface-visibility: hidden;
+      overflow: hidden;
+    }
+
+    .page::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.25), rgba(0,0,0,0.05));
+      pointer-events: none;
+    }
+
+    .page-content {
+      text-align: center;
+      position: relative;
+      z-index: 3;
+    }
+
+    h1 {
+      font-family: 'Pacifico', cursive;
+      color: #e75480;
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+
+    p {
+      font-size: 17px;
+      color: #5a2a3a;
+      line-height: 1.7;
+    }
+
+    .hint {
+      margin-top: 20px;
+      font-size: 13px;
+      color: #b04a6f;
+      opacity: 0.75;
+    }
+
+    .flipped {
+      transform: rotateY(-180deg);
+      z-index: 0;
+    }
+
+    /* LAYERS FOR DEPTH */
+    .layer {
+      position: absolute;
+      pointer-events: none;
+      z-index: 1;
+      transition: transform 0.2s ease;
+    }
+
+    .bg-soft {
+      width: 240px;
+      top: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.45;
+      filter: blur(8px);
+    }
+
+    .petals {
+      width: 260px;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.9;
+    }
+
+    .stars {
+      width: 300px;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      opacity: 0.8;
+    }
+
+    .center-img {
+      width: 160px;
+      top: 140px;
+      left: 50%;
+      transform: translateX(-50%);
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,0.25));
+      animation: floaty 6s ease-in-out infinite;
+      z-index: 2;
+    }
+
+    @keyframes floaty {
+      0% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(-12px); }
+      100% { transform: translateX(-50%) translateY(0); }
+    }
+
+    .mymelody {
+      position: absolute;
+      bottom: -35px;
+      right: -20px;
+      width: 75px;
+      animation: floaty 5s ease-in-out infinite;
+      cursor: pointer;
+      z-index: 5;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="book-container">
+    <div class="book" id="book">
+
+      <!-- PÁGINA 1 -->
+      <div class="page" id="page0">
+
+        <img src="BackgroundEraser_20260121_031711293.png" class="layer bg-soft">
+        <img src="BackgroundEraser_20260121_031739467.png" class="layer petals">
+
+        <div class="page-content">
+          <h1>Para ti 💗</h1>
+          <p>
+            CONTIGO ME ANIME A HABLAR  
+            DE COSAS QUE SOLO  
+            HABLABA CONMIGO
+          </p>
+          <div class="hint">Toca para pasar página 📖</div>
+        </div>
+      </div>
+
+      <!-- PÁGINA 2 -->
+      <div class="page" id="page1">
+
+        <img src="BackgroundEraser_20260121_032029588.png" class="layer center-img">
+
+        <div class="page-content">
+          <h1>Otra vida</h1>
+          <p>
+            INCLUSO EN OTRA VIDA  
+            YO RECONOCERÍA  
+            TUS OJOS
+          </p>
+          <div class="hint">Toca para continuar ✨</div>
+        </div>
+      </div>
+
+      <!-- PÁGINA 3 -->
+      <div class="page" id="page2">
+
+        <img src="BackgroundEraser_20260121_031739467.png" class="layer petals">
+        <img src="BackgroundEraser_20260121_031711293.png" class="layer stars">
+
+        <div class="page-content">
+          <h1>Sueños</h1>
+          <p>
+            en el jardín de tus ojos  
+            nacen mis sueños  
+            <br><br>
+            entre millones de estrellas  
+            te elegiría a ti ✨
+          </p>
+          <div class="hint">Fin 💗</div>
+        </div>
+      </div>
+
+    </div>
+
+    <img src="BackgroundEraser_20260121_032029588.png" class="mymelody" onclick="secretMessage()">
+
+  </div>
+
+  <!-- Audio -->
+  <audio id="bgMusic" loop>
+    <source src="temachii - may you never .mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Sonido hoja -->
+  <audio id="flipSound">
+    <source src="https://assets.mixkit.co/sfx/preview/mixkit-page-turn-1104.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const pages = [
+      document.getElementById("page0"),
+      document.getElementById("page1"),
+      document.getElementById("page2")
+    ];
+
+    const book = document.getElementById("book");
+    let currentPage = 0;
+
+    // PARALLAX (efecto dedo)
+    document.addEventListener("mousemove", (e) => {
+      const x = (e.clientX / window.innerWidth - 0.5) * 12;
+      const y = (e.clientY / window.innerHeight - 0.5) * 12;
+
+      book.style.transform = `rotateY(${x}deg) rotateX(${-y}deg)`;
+
+      document.querySelectorAll(".layer").forEach(layer => {
+        layer.style.transform = `translateX(-50%) translateY(${y * 2}px)`;
+      });
+    });
+
+    document.addEventListener("mouseleave", () => {
+      book.style.transform = "rotateY(0deg) rotateX(0deg)";
+    });
+
+    // PASAR PÁGINA
+    book.addEventListener("click", nextPage);
+
+    function nextPage() {
+      if (currentPage < pages.length - 1) {
+        pages[currentPage].classList.add("flipped");
+        currentPage++;
+        playMusic();
+        playFlipSound();
+      }
+    }
+
+    function playMusic() {
+      const music = document.getElementById("bgMusic");
+      music.volume = 0.5;
+      music.play().catch(() => {});
+    }
+
+    function playFlipSound() {
+      const sound = document.getElementById("flipSound");
+      sound.currentTime = 0;
+      sound.play().catch(() => {});
+    }
+
+    function secretMessage() {
+      alert("Te amo más de lo que puedo escribir aquí 💕");
+    }
+  </script>
+
+</body>
+</html>
